@@ -3,10 +3,16 @@
 
 .card {
   margin-top: 5rem;
+  position: relative;
   margin-bottom: 5rem;
   border-radius: 2rem;
   overflow: hidden;
+  transition: box-shadow 0.3s ease;
   box-shadow: 15px 20px 40px rgba(216, 211, 211, 0.4);
+}
+
+.card:hover{
+  box-shadow: 15px 20px 40px rgba(138, 43, 226, 0.4);
 }
 
 .card h2 {

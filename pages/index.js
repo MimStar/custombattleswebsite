@@ -56,7 +56,7 @@ export default function Home({posts}) {
         <title>Everhood Custom Battles</title>
         <meta name="description" content="Website with all the custom battles of Everhood" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/custombattles.ico" />
       </Head>
       <NavBar />
       <main className={`${styles.main} ${inter.className}`}>
