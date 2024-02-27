@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import {GraphQLClient, gql} from "graphql-request";
 import BlogCard from "@/components/BlogCard";
 import NavBar from "@/components/NavBar"
+import React, { useEffect } from 'react';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -39,6 +40,8 @@ const QUERY = gql`
   }
 `;
 
+const images = ["1", "2"];
+
 export async function getStaticProps(){
   const {posts} = await graphcms.request(QUERY);
   return {
@@ -50,6 +53,13 @@ export async function getStaticProps(){
 }
 
 export default function Home({posts}) {
+
+  useEffect(() => {
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    document.body.style.backgroundImage = `url(/backgrounds/background${randomImage}.jpg)`;
+
+  }, []);
+
   return (
     <>
       <Head>
