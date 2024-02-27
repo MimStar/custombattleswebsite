@@ -17,14 +17,14 @@
   border-radius: 1rem;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
-  box-shadow: 0px 0px 20px rgba(216, 211, 211, 0.4);
+  box-shadow: 0px 0px 40px rgba(216, 211, 211, 0.4);
   font-family: "DTM-Mono", normal;
   background-color: rgb(0, 0, 0);
 }
 
 .card:hover{
-  --card-hover-color1: #8a2be2bb;
-  box-shadow: 0px 0px 40px var(--card-hover-color1);
+  --card-hover-color1: #8a2be2cc;
+  box-shadow: 0px 0px 80px var(--card-hover-color1);
 }
 
 .card h2 {
@@ -92,7 +92,10 @@
 }
 
 .buttonContainer {
-  text-align: right;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  transform: scale(1.5);
 }
 
 .downloadButton {
