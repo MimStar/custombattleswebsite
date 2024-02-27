@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
 
+
+@font-face {
+  font-family: "DTM-Mono";
+  src: url("/fonts/dtm-mono.woff2") format("woff2"),
+       url("/fonts/dtm-mono.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .card {
   margin-top: 5rem;
   position: relative;
@@ -9,14 +18,17 @@
   overflow: hidden;
   transition: box-shadow 0.3s ease;
   box-shadow: 15px 20px 40px rgba(216, 211, 211, 0.4);
+  font-family: "DTM-Mono", normal;
+  background-color: rgb(245, 245, 245);
 }
 
 .card:hover{
-  box-shadow: 15px 20px 40px rgba(138, 43, 226, 0.4);
+  --card-hover-color1: #8a2be2bb;
+  box-shadow: 15px 20px 40px var(--card-hover-color1);
 }
 
 .card h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   padding: 0.5rem 0rem;
   text-align: center;
 }
@@ -34,7 +46,7 @@
 
 .descriptionContainer p{
   font-size: 0.9em;
-  font-family: "Roboto Slab", serif;
+  font-family: "DTM-Mono", normal;
 }
 
 .imgContainer img {
@@ -84,7 +96,9 @@
 }
 
 .downloadButton {
-  background: linear-gradient(90deg, #8a2be2, #d604da, #8a2be2);
+  --download-button-color1: #8a2be2;
+  --download-button-color2: #d604da;
+  background: linear-gradient(90deg, var(--download-button-color1), var(--download-button-color2), var(--download-button-color1));
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
   color: white;
@@ -100,6 +114,7 @@
   -webkit-transform-style: preserve-3d;
   bottom: 10px;
   right: 10px;
+  font-family: "DTM-Mono", normal;
 }
 
 .difficulty_and_gamemode {

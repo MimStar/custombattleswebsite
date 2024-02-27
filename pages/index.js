@@ -22,6 +22,8 @@ const QUERY = gql`
       difficulty,
       gameMode,
       originalSong,
+      color1,
+      color2,
       slug,
       description {
         html
@@ -32,9 +34,7 @@ const QUERY = gql`
           url
         }
       }
-      coverPhoto {
-        url
-      }
+      coverPhoto,
     }
   }
 `;
@@ -74,7 +74,9 @@ export default function Home({posts}) {
             downloadLink={post.downloadLink}
             difficulty={post.difficulty}
             gameMode={post.gameMode}
-            originalSong={post.originalSong} />
+            originalSong={post.originalSong}
+            color1={post.color1}
+            color2={post.color2} />
 
           ))
         }        
