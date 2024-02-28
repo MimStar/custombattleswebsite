@@ -77,8 +77,9 @@ export default function Home({posts}) {
     window.addEventListener('scroll', loadMorePosts);
     return () => window.removeEventListener('scroll', loadMorePosts);
   }, [page]);
-
-  const currentPosts = posts.slice(0, page * postsPerPage);
+  const filteredPosts = [...posts].filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
+  const sortedPosts = filteredPosts.sort((a, b) => new Date(b.datePublished) - new Date(a.datePublished));
+  const currentPosts = sortedPosts.slice(0, page * postsPerPage);
 
   return (
     <>
@@ -92,7 +93,7 @@ export default function Home({posts}) {
       <input type="text" value={search} onChange={handleSearch} placeholder="Search..." className={styles.search}/>
       <main className={`${styles.main} ${inter.className}`}>
         {
-          currentPosts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())).sort((a,b) => new Date(b.datePublished) - new Date(a.datePublished)).map((post) => (
+          currentPosts.map((post) => (
             <BlogCard 
             title={post.title} 
             authors={post.authors} 
