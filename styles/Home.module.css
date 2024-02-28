@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "DTM-Mono";
+  src: url("/fonts/dtm-mono.woff2") format("woff2"),
+       url("/fonts/dtm-mono.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .title h1 {
   color: rgb(39, 39, 39);
   display: flex;
@@ -11,6 +19,22 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-gap: 3rem;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border-radius: .5rem;
+  scale: 1.5;
+  font-family: "DTM-Mono", normal;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 @media screen and (max-width: 768px) {

@@ -23,7 +23,7 @@ export default function BlogPost({ title, author, coverPhoto, description, dateP
             </div>
         </Link>
         <div className={styles.text}>
-          <h2>{title}</h2>
+          <h2 style={{color: color1}}>{title}</h2>
           <div className={styles.descriptionContainer}>
             {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
           </div>

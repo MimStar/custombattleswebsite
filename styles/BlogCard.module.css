@@ -11,9 +11,8 @@
 }
 
 .card {
-  margin-top: 5rem;
+  margin-top: 2.5rem;
   position: relative;
-  margin-bottom: 5rem;
   border-radius: 1rem;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
