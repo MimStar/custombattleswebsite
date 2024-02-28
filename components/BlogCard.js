@@ -17,7 +17,7 @@ export default function BlogPost({ title, authors, coverPhoto, description, date
   
   return (
     <div className={styles.card} style={{'--card-hover-color1': color1 + 'cc'}}>
-        <Link href={youtubePreview}>
+        <Link href={youtubePreview} target="_blank" rel="noopener noreferrer">
             <div className={styles.imgContainer}>
                 <img src={coverPhoto} alt=""/>
             </div>
@@ -32,7 +32,7 @@ export default function BlogPost({ title, authors, coverPhoto, description, date
             <h3>Game mode: {gameMode}</h3>
           </div>
           <div className={styles.buttonContainer}>
-            <Link href={downloadLink}>
+            <Link href={downloadLink} target="_blank" rel="noopener noreferrer">
               <button className={styles.downloadButton} style={{'--download-button-color1': color1, '--download-button-color2': color2}}>Download</button>
             </Link>
           </div>
