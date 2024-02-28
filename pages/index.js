@@ -41,7 +41,7 @@ const QUERY = gql`
   }
 `;
 
-const images = ["1", "2"];
+const images = ["1", "2","3","4","5","6","7","8","9","10"];
 
 export async function getStaticProps(){
   const {posts} = await graphcms.request(QUERY);
