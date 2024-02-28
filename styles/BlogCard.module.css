@@ -28,6 +28,8 @@
 }
 
 .card h2 {
+  --card-h2-color1: #8a2be2;
+  color: var(--card-h2-color1);
   font-size: 2rem;
   padding: 0.5rem 0rem;
   text-align: center;
