@@ -30,7 +30,7 @@ const QUERY = gql`
       description {
         html
       }
-      author {
+      authors {
         name,
         avatar {
           url
@@ -95,7 +95,7 @@ export default function Home({posts}) {
           currentPosts.filter(post => post.title.toLowerCase().includes(search.toLowerCase())).sort((a,b) => new Date(b.datePublished) - new Date(a.datePublished)).map((post) => (
             <BlogCard 
             title={post.title} 
-            author={post.author} 
+            authors={post.authors} 
             coverPhoto={post.coverPhoto}
             description={post.description.html}
             datePublished={post.datePublished} 

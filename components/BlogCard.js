@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import styles from "@/styles/BlogCard.module.css"
 
-export default function BlogPost({ title, author, coverPhoto, description, datePublished, slug, youtubePreview, downloadLink, difficulty, gameMode, originalSong, color1, color2}) {
+export default function BlogPost({ title, authors, coverPhoto, description, datePublished, slug, youtubePreview, downloadLink, difficulty, gameMode, originalSong, color1, color2}) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -37,10 +37,12 @@ export default function BlogPost({ title, author, coverPhoto, description, dateP
             </Link>
           </div>
           <div className={styles.details}>
-            <div className={styles.author}>
-              <img src={author.avatar.url} alt=""/>
-              <h4>{author.name}</h4>
-            </div>
+            {authors.map((author, index) => (
+              <div key={index} className={styles.author}>
+                <img src={author.avatar.url} alt=""/>
+                <h4>{author.name}</h4>
+              </div>
+            ))}
             <div className={styles.date}>
               <h4>{datePublished}</h4>
             </div>
