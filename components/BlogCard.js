@@ -39,7 +39,7 @@ export default function BlogPost({ title, authors, coverPhoto, description, date
           <div className={styles.details}>
             {authors.map((author, index) => (
               <div key={index} className={styles.author}>
-                <img src={author.avatar.url} alt=""/>
+                <img src={author.avatar} alt=""/>
                 <h4>{author.name}</h4>
               </div>
             ))}

@@ -32,9 +32,7 @@ const QUERY = gql`
       }
       authors {
         name,
-        avatar {
-          url
-        }
+        avatar
       }
       coverPhoto,
     }
@@ -49,7 +47,7 @@ export async function getStaticProps(){
     props: {
       posts,
     },
-    revalidate: 10,
+    revalidate: 3600,
   };
 }
 
