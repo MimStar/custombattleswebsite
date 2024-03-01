@@ -1,9 +1,10 @@
 import styles from "@/styles/NavBar.module.css"
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <h1>Everhood Custom Battles</h1>
+      <Image src="/logo.png" alt="Title" width={734} height={257}/>
     </nav>
   )
 }
