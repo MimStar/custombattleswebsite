@@ -83,7 +83,7 @@ export default function Home({posts}) {
     <>
       <Head>
         <title>Everhood Custom Battles</title>
-        <meta name="description" content="Website with all the custom battles of Everhood" />
+        <meta name="description" content="The best place to download all the custom battles for Everhood !" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/custombattles.ico" />
       </Head>
