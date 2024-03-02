@@ -19,6 +19,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-gap: 3rem;
+  row-gap: 0rem;
+  align-items: start;
 }
 
 .search{
