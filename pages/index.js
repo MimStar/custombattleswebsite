@@ -40,6 +40,32 @@ const QUERY = gql`
   }
 `;
 
+const SEARCH_QUERY = gql`
+  query SearchPosts($title: String!){
+    posts(where: {title_contains: $title}) {
+      id,
+      title,
+      datePublished,
+      youtubePreview,
+      downloadLink,
+      difficulty,
+      gameMode,
+      originalSong,
+      color1,
+      color2,
+      slug,
+      description {
+        html
+      }
+      authors {
+        name,
+        avatar
+      }
+      coverPhoto,
+    }
+  }
+`;
+
 const images = ["1", "2","3","4","5","6","7","8","9","10"];
 
 export async function getStaticProps(){
@@ -65,8 +91,17 @@ export default function Home({initialPosts}) {
   const [page, setPage] = useState(1);
   const postsPerPage = 10;
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     setSearch(event.target.value);
+    if (event.target.value === "") {
+      const {posts} = await graphcms.request(QUERY, {skip: 0});
+      setAllPosts(posts);
+      setPage(1); // Reset the page state
+    } else {
+      const {posts} = await graphcms.request(SEARCH_QUERY, {title: event.target.value});
+      setAllPosts(posts);
+      setPage(1); // Reset the page state
+    }
   }
 
   useEffect(() => {
