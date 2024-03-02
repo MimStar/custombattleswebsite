@@ -91,25 +91,38 @@ export default function Home({initialPosts}) {
   const [page, setPage] = useState(1);
   const postsPerPage = 10;
 
+  const[initial, setInitial] = useState(initialPosts);
+
+  let debounceTimer;
+
   const handleSearch = async (event) => {
-    setSearch(event.target.value);
-    if (event.target.value === "") {
-      const {posts} = await graphcms.request(QUERY, {skip: 0});
-      setAllPosts(posts);
+    const searchValue = event.target.value;
+    setSearch(searchValue);
+  
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(async () => {
+      if (searchValue === "") {
+        const {posts} = await graphcms.request(QUERY, {skip: 0});
+        setAllPosts(posts);
+      } else {
+        const {posts} = await graphcms.request(SEARCH_QUERY, {title: searchValue});
+        setAllPosts(posts);
+      }
       setPage(1); // Reset the page state
-    } else {
-      const {posts} = await graphcms.request(SEARCH_QUERY, {title: event.target.value});
-      setAllPosts(posts);
-      setPage(1); // Reset the page state
-    }
+    }, 500); // delay of 500ms
   }
+
+  const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     const loadMorePosts = async () => {
       if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+      setIsLoading(true);
       setPage(page + 1);
       const {posts} = await graphcms.request(QUERY, {skip: page * postsPerPage});
       setAllPosts([...allPosts, ...posts]);
+      setIsLoading(false);
     };
     window.addEventListener('scroll', loadMorePosts);
     return () => window.removeEventListener('scroll', loadMorePosts);
