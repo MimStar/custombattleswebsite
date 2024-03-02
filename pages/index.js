@@ -116,7 +116,7 @@ export default function Home({initialPosts}) {
 
   useEffect(() => {
     const loadMorePosts = async () => {
-      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || search !== "") return;
+      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || search !== "" || isLoading) return;
       setIsLoading(true);
       setPage(page + 1);
       const {posts} = await graphcms.request(QUERY, {skip: page * postsPerPage});
