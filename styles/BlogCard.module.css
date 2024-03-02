@@ -15,15 +15,18 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
   box-shadow: 0px 0px 40px rgba(216, 211, 211, 0.4);
   font-family: "DTM-Mono", normal;
   background-color: rgb(0, 0, 0);
+  box-sizing: border-box;
+  border: 2px solid transparent;
 }
 
 .card:hover{
   --card-hover-color1: #8a2be2cc;
   box-shadow: 0px 0px 80px var(--card-hover-color1);
+  border: 2px solid var(--card-hover-color1);
 }
 
 .card h2 {
@@ -53,11 +56,12 @@
 .imgContainer img {
   width: 100%;
   height: 30vh;
+  opacity: 0.7;
 }
 
 .card img:hover {
-  height: 50vh;
-  opacity: 0.8;
+  height: 40vh;
+  opacity: 1;
 }
 
 .card img {
