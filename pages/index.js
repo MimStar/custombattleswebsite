@@ -8,14 +8,15 @@ import NavBar from "@/components/NavBar"
 import React, { useEffect } from 'react';
 import { useState } from "react";
 
+let skipNumber = 0;
 
 const inter = Inter({ subsets: ["latin"] });
 
 const graphcms = new GraphQLClient("https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clsqe5diz0vim01w9kpbnl6wi/master");
 
 const QUERY = gql`
-  {
-    posts{
+  query Posts($skip: Int!){
+    posts(first: 10, skip : $skip, orderBy: datePublished_DESC) {
       id,
       title,
       datePublished,
@@ -42,16 +43,16 @@ const QUERY = gql`
 const images = ["1", "2","3","4","5","6","7","8","9","10"];
 
 export async function getStaticProps(){
-  const {posts} = await graphcms.request(QUERY);
+  const {posts: initialPosts} = await graphcms.request(QUERY , {skip: skipNumber});
   return {
     props: {
-      posts,
+      initialPosts,
     },
-    revalidate: 3600,
+    revalidate: 10,
   };
 }
 
-export default function Home({posts}) {
+export default function Home({initialPosts}) {
 
   useEffect(() => {
     const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -60,6 +61,7 @@ export default function Home({posts}) {
   }, []);
 
   const [search, setSearch] = useState("");
+  const [allPosts, setAllPosts] = useState(initialPosts);
   const [page, setPage] = useState(1);
   const postsPerPage = 10;
 
@@ -68,16 +70,17 @@ export default function Home({posts}) {
   }
 
   useEffect(() => {
-    const loadMorePosts = () => {
+    const loadMorePosts = async () => {
       if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
       setPage(page + 1);
+      const {posts} = await graphcms.request(QUERY, {skip: page * postsPerPage});
+      setAllPosts([...allPosts, ...posts]);
     };
     window.addEventListener('scroll', loadMorePosts);
     return () => window.removeEventListener('scroll', loadMorePosts);
-  }, [page]);
-  const filteredPosts = [...posts].filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
-  const sortedPosts = filteredPosts.sort((a, b) => new Date(b.datePublished) - new Date(a.datePublished));
-  const currentPosts = sortedPosts.slice(0, page * postsPerPage);
+  }, [page, allPosts]);
+  const filteredPosts = [...allPosts].filter(post => post.title.toLowerCase().includes(search.toLowerCase()));
+  const currentPosts = filteredPosts.slice(0, page * postsPerPage);
 
   return (
     <>
