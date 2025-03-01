@@ -12,7 +12,7 @@ let skipNumber = 0;
 
 const inter = Inter({ subsets: ["latin"] });
 
-const graphcms = new GraphQLClient("https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clsqe5diz0vim01w9kpbnl6wi/master");
+const graphcms = new GraphQLClient("ADD YOU GRAPHCMS API LINK");
 
 const QUERY = gql`
   query Posts($skip: Int!){
